@@ -1,44 +1,44 @@
-import com.example.financas.model.Financeira;
-import com.example.financas.repository.FinanceiraRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+package com.example.financecontrol;
+
 
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+import com.example.financecontrol.model.Financeira;
+import com.example.fiancecontrol.repository.FinanceiraRepository;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
+
 
 @RestController
-@RequestMapping("/financas")
+@RequestMapping("financeira")
 public class FinanceiraController {
 
+    Logger log = LoggerFactory.getLogger(getClass());
+
     @Autowired
-    private FinanceiraRepository financeiraRepository;
+    FinanceiraRepository repository;
 
     @GetMapping
-    public ResponseEntity<List<Financeira>> listarFinancas() {
-        List<Financeira> financas = financeiraRepository.findAll();
-        return new ResponseEntity<>(financas, HttpStatus.OK);
+    public List<financeira> index() {
+        return repository.findAll();
+
     }
 
     @PostMapping
-    public ResponseEntity<Financeira> adicionarFinanceira(@RequestBody Financeira financeira) {
-        Financeira novaFinanceira = financeiraRepository.save(financeira);
-        return new ResponseEntity<>(novaFinanceira, HttpStatus.CREATED);
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public Financeira create(@RequestBody Financas financeira){
+        log.info("Cadastrando categoria {}", financeira);
+        repository.save(financeira);
+        return financas;
     }
+}    
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Financeira> detalharFinanceira(@PathVariable Long id) {
-        Financeira financeira = financeiraRepository.findById(id).orElse(null);
-        if (financeira != null) {
-            return new ResponseEntity<>(financeira, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> apagarFinanceira(@PathVariable Long id) {
-        financeiraRepository.deleteById(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-}

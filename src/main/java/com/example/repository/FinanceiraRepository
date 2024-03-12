@@ -1,4 +1,4 @@
-package com.example.financas.repository;
+package com.example.financecontrol.repository;
 
 import com.example.financas.model.Financeira;
 import org.springframework.data.jpa.repository.JpaRepository;
