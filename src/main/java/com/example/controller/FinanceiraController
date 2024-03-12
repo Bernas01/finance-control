@@ -1,0 +1,44 @@
+import com.example.financas.model.Financeira;
+import com.example.financas.repository.FinanceiraRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/financas")
+public class FinanceiraController {
+
+    @Autowired
+    private FinanceiraRepository financeiraRepository;
+
+    @GetMapping
+    public ResponseEntity<List<Financeira>> listarFinancas() {
+        List<Financeira> financas = financeiraRepository.findAll();
+        return new ResponseEntity<>(financas, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<Financeira> adicionarFinanceira(@RequestBody Financeira financeira) {
+        Financeira novaFinanceira = financeiraRepository.save(financeira);
+        return new ResponseEntity<>(novaFinanceira, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Financeira> detalharFinanceira(@PathVariable Long id) {
+        Financeira financeira = financeiraRepository.findById(id).orElse(null);
+        if (financeira != null) {
+            return new ResponseEntity<>(financeira, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> apagarFinanceira(@PathVariable Long id) {
+        financeiraRepository.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+}

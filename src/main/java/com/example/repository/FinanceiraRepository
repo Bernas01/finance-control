@@ -1,0 +1,8 @@
+package com.example.financas.repository;
+
+import com.example.financas.model.Financeira;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface FinanceiraRepository extends JpaRepository<Financeira, Long> {
+
+}
