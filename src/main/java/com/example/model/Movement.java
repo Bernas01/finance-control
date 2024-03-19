@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 import org.hibernate.annotations.NotFound;
 
-import com.example.validation.TipoMovimentacao;
+import com.example.validation.MovementType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,21 +22,21 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Movimentacao {
+public class Movement {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank(message = "Descrição é obrigatória")
-    @Size(min = 3, max = 255, message = "Descrição muito curta. Deve ter pelo menos 3 caracteres")
-    private String descricao;
+    @NotBlank(message = "{movement.description.notBlank}")
+    @Size(min = 3, max = 255, message = "{moves.description.size}")
+    private String description;
 
-    @Positive(message = "Valor inválido. Dever ser positivo")
-    private BigDecimal valor;
+    @Positive(message = "{movement.amount.positive}")
+    private BigDecimal amount;
 
-    private LocalDate data;
+    private LocalDate date;
 
-    @TipoMovimentacao
-    private String tipo;
+    @MovementType
+    private String type;
     
 }

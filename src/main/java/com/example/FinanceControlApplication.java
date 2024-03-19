@@ -18,7 +18,7 @@ public class FinanceControlApplication {
 	@RequestMapping
 	@ResponseBody
 	public String home (){
-		return "Budget Buddy";
+		return "Finance Control";
 	}
 
 }

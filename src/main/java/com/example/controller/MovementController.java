@@ -1,28 +1,32 @@
 package com.example.controller;
 
+import static org.springframework.http.HttpStatus.CREATED;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.model.Movimentacao;
-import com.example.repository.MovimentacaoRepository;
+
+import com.example.model.Movement;
+import com.example.repository.MovesRepository;
 import jakarta.validation.Valid;
 
 @RestController 
-@RequestMapping("movimentacao")
-public class MovimentacaoController {
+@RequestMapping("movement")
+public class MovementController {
 
     @Autowired
-    MovimentacaoRepository repository;
+    MovesRepository repository;
 
 
-    @PostMapping("")
-    public ResponseEntity<Movimentacao> create (@RequestBody @Valid Movimentacao movimentacao) {
-        repository.save(movimentacao);
-        return ResponseEntity.status(201).body(movimentacao);
+    @PostMapping
+    @ResponseStatus(CREATED)
+    public Movement create(@RequestBody @Valid Movement movement) {
+        return repository.save(movement);
     }
 }
     
