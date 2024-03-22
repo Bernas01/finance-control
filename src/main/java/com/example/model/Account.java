@@ -8,18 +8,16 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-@Data 
-@Entity
-public class Category {
 
+@Data
+@Entity
+public class Account {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank(message = "{category.name.notBlank}")
-    @Size(min = 3 , max = 255, message = "{category.name.size}")
+    @NotBlank(message = "{account.name.notBlank}")
+    @Size(min = 3, max = 255, message = "{account.name.size}")
     private String name;
-
     
-    private String icon;
-
+    
 }
