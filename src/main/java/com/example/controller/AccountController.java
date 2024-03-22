@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.example.model.Account;
 import com.example.repository.AccountRepository;
 
 import jakarta.validation.Valid;
@@ -33,18 +34,20 @@ public class AccountController {
     AccountRepository repository;
 
     @GetMapping
-    public List<AccountRepository> index() {
+    public List<Account> index() {
         return repository.findAll();
 
     }
     @PostMapping
     @ResponseStatus(CREATED)
-    public AccountRepository create(@RequestBody @Valid AccountRepository account) {
+    public Account create(@RequestBody @Valid Account account) {
+        log.info("Account created." + account);
         return repository.save(account);
+       
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<AccountRepository> show(@PathVariable Long id) { 
+    public ResponseEntity<Account> show(@PathVariable Long id) { 
         log.info("Retrieve Account by id {}." + id);
 
         return repository

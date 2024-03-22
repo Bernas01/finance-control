@@ -20,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.example.model.Category;
 import com.example.repository.CategoryRepository;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -38,7 +39,7 @@ public class CategoryController {
 
     @PostMapping 
     @ResponseStatus(CREATED)
-    public Category create(@RequestBody Category category) {
+    public Category create(@RequestBody @Valid Category category) {
         log.info("Registering category." + category);
         return repository.save(category);
     }

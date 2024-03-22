@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 @RestController 
-@RequestMapping("/movement")
+@RequestMapping("movement")
 @Slf4j
 
 public class MovementController {

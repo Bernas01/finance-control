@@ -2,7 +2,9 @@ package com.example.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AccountRepository extends JpaRepository<AccountRepository, Long> {
+import com.example.model.Account;
+
+public interface AccountRepository extends JpaRepository<Account, Long> {
 
     
 
