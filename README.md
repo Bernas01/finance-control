@@ -22,7 +22,7 @@ API do projeto Finance Control - Controle de Despesas pessoais
 
 ### Listar Categorias
 
-`GET` /categoria
+`GET` /category
 
 Retorna um array com todas as categorias cadastradas.
 
@@ -32,13 +32,13 @@ Retorna um array com todas as categorias cadastradas.
 [
     {
         "id": 1,
-        "nome": "Alimentação",
-        "icone": "fast-food"
+        "name": "Alimentação",
+        "icon": "fast-food"
     },
     {
         "id": 2,
-        "nome": "Educação",
-        "icone": "book"
+        "name": "Educação",
+        "icon": "book"
     }
 ]
 ```
@@ -54,7 +54,7 @@ Retorna um array com todas as categorias cadastradas.
 
 ### Cadastrar Categoria
 
-`POST` /categoria
+`POST` /category
 
 Cadastrar uma nova categoria para o usuário logado com os dados enviados no corpo da requisição.
 
@@ -67,8 +67,8 @@ Cadastrar uma nova categoria para o usuário logado com os dados enviados no cor
 
 ```js
 {
-    "nome": "Alimentação",
-    "icone": "fast-food"
+    "name": "Alimentação",
+    "icon": "fast-food"
 }
 ```
 
@@ -77,8 +77,8 @@ Cadastrar uma nova categoria para o usuário logado com os dados enviados no cor
 ```js
 {
     "id": 1,
-    "nome": "Alimentação",
-    "icone": "fast-food"
+    "name": "Alimentação",
+    "icon": "fast-food"
 }
 ```
 
@@ -94,17 +94,17 @@ Cadastrar uma nova categoria para o usuário logado com os dados enviados no cor
 
 ### Detalhes da Categoria
 
-`GET` /categoria/`{id}`
+`GET` /category/`{id}`
 
 Retorna os dados detalhados da categoria com o `id` informado no parâmetro de path.
 
 ### Exemplo de Resposta
 ```js
-// requisição para /categoria/1
+// requisição para /category/1
 {
     "id": 1,
-    "nome": "Alimentação",
-    "icone": "fast-food"
+    "name": "Alimentação",
+    "icon": "fast-food"
 }
 ```
 
@@ -120,7 +120,7 @@ Retorna os dados detalhados da categoria com o `id` informado no parâmetro de p
 
 ### Apagar Categoria
 
-`DELETE` /categoria/`{id}`
+`DELETE` /category/`{id}`
 
 Apaga a categoria indicada pelo `id` enviado no parâmetro de path.
 
@@ -136,7 +136,7 @@ Apaga a categoria indicada pelo `id` enviado no parâmetro de path.
 
 ### Atualizar Categoria
 
-`PUT` /categoria/`{id}`
+`PUT` /category/`{id}`
 
 Atualizar os dados da categoria com o `id` informado no path, utilizando os novos dados enviados no corpo da requisição.
 
@@ -149,8 +149,8 @@ Atualizar os dados da categoria com o `id` informado no path, utilizando os novo
 
 ```js
 {
-    "nome": "Alimentação",
-    "icone": "fast-food"
+    "name": "Alimentação",
+    "icon": "fast-food"
 }
 ```
 
@@ -159,8 +159,8 @@ Atualizar os dados da categoria com o `id` informado no path, utilizando os novo
 ```js
 {
     "id": 1,
-    "nome": "Alimentação",
-    "icone": "fast-food"
+    "name": "Alimentação",
+    "icon": "fast-food"
 }
 ```
 
