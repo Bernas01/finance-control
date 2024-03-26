@@ -20,6 +20,6 @@ public class Category {
     private String name;
 
     
-    private String icon;
+    private String icon = "request_quote";
 
 }
